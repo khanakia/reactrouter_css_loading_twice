@@ -1,21 +1,24 @@
-import type { Route } from './+types/_layout.__index';
-import { Welcome } from '../welcome/welcome';
-import { parseAsInteger, useQueryState } from 'nuqs';
+import type { Route } from './+types/_layoutn.__index';
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: 'New React Router App' }, { name: 'description', content: 'Welcome to React Router!' }];
 }
 
 export default function Home() {
-  const [hello, setHello] = useQueryState('hello', { defaultValue: '' });
-  const [count, setCount] = useQueryState('count', parseAsInteger.withDefault(0));
   return (
-    <>
-      <button onClick={() => setCount((c) => c + 1)}>Count: {count}</button>
-      <input value={hello} placeholder='Enter your name' onChange={(e) => setHello(e.target.value || null)} />
-      <p>Hello, {hello || 'anonymous visitor'}!</p>
-    </>
+    <div className='rounded-md bg-red-50 p-4'>
+      <div className='flex'>
+        <div className='shrink-0'></div>
+        <div className='ml-3'>
+          <h3 className='text-sm font-medium text-red-800'>There were 2 errors with your submission</h3>
+          <div className='mt-2 text-sm text-red-700'>
+            <ul role='list' className='list-disc space-y-1 pl-5'>
+              <li>Your password must be at least 8 characters</li>
+              <li>Your password must include at least one pro wrestling finishing move</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   );
-
-  return <Welcome />;
 }
